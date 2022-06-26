@@ -192,3 +192,6 @@ test.pred=predict(ld.rf.final,newdata = test_df)
 x$Survived=test.pred
 write.csv(x,"C:/Edvancer/submit_2.csv",row.names = F)
 
+
+id=ranjith@gmail.com
+pass=Helloworld
