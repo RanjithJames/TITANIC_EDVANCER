@@ -167,3 +167,28 @@ x=x[,c("PassengerId","Survived")]
 
 write.csv(x,"C:/Edvancer/submit_3.csv",row.names = F)
 
+library(randomForestSRC)
+{
+  o <- tune(Survived~., train_df, doBest = TRUE)
+  
+  o$optimal
+  
+  o
+  best_params=data.frame(mtry=8,
+                         ntree=500,
+                         maxnodes=70,
+                         nodesize=1)
+}
+
+ld.rf.final=randomForest(Survived~.,
+                         mtry=best_params$mtry,
+                         ntree=best_params$ntree,
+                         maxnodes=best_params$maxnodes,
+                         nodesize=best_params$nodesize,
+                         data=train_df)
+
+test.pred=predict(ld.rf.final,newdata = test_df)
+
+x$Survived=test.pred
+write.csv(x,"C:/Edvancer/submit_2.csv",row.names = F)
+
